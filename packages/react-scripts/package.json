@@ -1,6 +1,6 @@
 {
   "name": "nmds-react-scripts",
-  "version": "2.1.8",
+  "version": "0.0.2",
   "description": "Transpile untranspiled modules from node_modules for Create React App. Makes it easy to have local libraries and keep a slick, manageable dev experience.",
   "repository": "s4kh/create-react-app",
   "license": "MIT",
@@ -59,7 +59,7 @@
     "pnp-webpack-plugin": "1.2.1",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
-    "postcss-normalize": "7.0.1",   
+    "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
     "react-app-polyfill": "^0.2.2",
@@ -92,5 +92,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "keywords": [
+    "plugin transpile",
+    "babel transpile"
+  ]
 }
