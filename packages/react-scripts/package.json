@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts",
+  "name": "nmds-react-scripts",
   "version": "2.1.8",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "facebook/create-react-app",
+  "description": "Transpile untranspiled modules from node_modules for Create React App. Makes it easy to have local libraries and keep a slick, manageable dev experience.",
+  "repository": "s4kh/create-react-app",
   "license": "MIT",
   "engines": {
     "node": ">=8.10"
   },
   "bugs": {
-    "url": "https://github.com/facebook/create-react-app/issues"
+    "url": "https://github.com/s4kh/create-react-app/issues"
   },
   "files": [
     "bin",

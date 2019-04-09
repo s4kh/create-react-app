@@ -18,6 +18,8 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 const envPublicUrl = process.env.PUBLIC_URL;
+const appDepth = process.env.APP_DEPTH || '../../'; // Means root of the repo will be 2 depth up
+const customPkgName = process.env.CUSTOM_PKG_ROOT_NAME || "nmds";
 
 function ensureSlash(inputPath, needsSlash) {
   const hasSlash = inputPath.endsWith('/');
@@ -154,5 +156,26 @@ if (
   };
 }
 // @remove-on-eject-end
+
+module.exports.repoRoot = path
+  .resolve(resolveApp("."), appDepth);
+
+  module.exports.rootNodeModules = path.join(
+    module.exports.repoRoot,
+    "node_modules"
+  );
+
+module.exports.repoWSModules = [];
+
+fs.readdirSync(module.exports.rootNodeModules).forEach(folderName => {
+  if (folderName === "react-scripts") {return;}
+  if (folderName.substr(0, 1) === ".") {return;}
+
+  let fullName = path.join(module.exports.rootNodeModules, folderName);
+
+  if (folderName.indexOf(customPkgName) > -1 && fs.lstatSync(fullName).isSymbolicLink()) {
+    module.exports.repoWSModules.push(fs.realpathSync(fullName));
+  }
+});
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
