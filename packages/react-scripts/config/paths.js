@@ -160,16 +160,19 @@ if (
 }
 // @remove-on-eject-end
 
+// Root directory of your app
 module.exports.repoRoot = path
   .resolve(resolveApp("."), appDepth);
 
-  module.exports.rootNodeModules = path.join(
-    module.exports.repoRoot,
-    "node_modules"
-  );
+// Root node modules directory -> modules that are hoisted
+module.exports.rootNodeModules = path.join(
+  module.exports.repoRoot,
+  "node_modules"
+);
 
 module.exports.repoWSModules = [];
 
+// Get full path node modules that start with our custom pkgName and is symbolic link
 fs.readdirSync(module.exports.rootNodeModules).forEach(folderName => {
   if (folderName === "react-scripts") {return;}
   if (folderName.substr(0, 1) === ".") {return;}
