@@ -20,6 +20,7 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 const envPublicUrl = process.env.PUBLIC_URL;
 const appDepth = process.env.APP_DEPTH || '../../'; // Means root of the repo will be 2 depth up
 const customPkgName = process.env.CUSTOM_PKG_ROOT_NAME || "nmds";
+const customPkgNames = customPkgName.split(',');
 
 function ensureSlash(inputPath, needsSlash) {
   const hasSlash = inputPath.endsWith('/');
@@ -178,8 +179,10 @@ fs.readdirSync(module.exports.rootNodeModules).forEach(folderName => {
   if (folderName.substr(0, 1) === ".") {return;}
 
   let fullName = path.join(module.exports.rootNodeModules, folderName);
+  //Check if folderName is our custom package
+  const isCustomPkg = customPkgNames.some(pkgName => folderName.indexOf(pkgName) > -1);
 
-  if (folderName.indexOf(customPkgName) > -1 && fs.lstatSync(fullName).isSymbolicLink()) {
+  if (isCustomPkg && fs.lstatSync(fullName).isSymbolicLink()) {
     module.exports.repoWSModules.push(fs.realpathSync(fullName));
   }
 });
