@@ -21,3 +21,11 @@ Transpile untranspiled modules from node_modules for Create React App. Makes it 
 ## Tutorial
 
 You can follow this [tutorial](https://auth0.com/blog/how-to-configure-create-react-app/) to tweak more of the react scripts.
+
+### To customize the nmds-react-scripts 
+1. fork the [repo](https://github.com/s4kh/create-react-app/tree/master/packages/react-scripts)
+2. make your changes (do not forget to increase the version)
+3. publish it to npmjs.com under your username
+4. change the version in your `package.json`
+5. reinstall the packages
+6. for creating new react app `create-react-app test-app --scripts-version nmds-react-scripts`
